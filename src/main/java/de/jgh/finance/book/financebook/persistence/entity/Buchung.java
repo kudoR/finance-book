@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Buchung implements Serializable {
@@ -149,5 +150,34 @@ public class Buchung implements Serializable {
 
     public void setKonto(Konto konto) {
         this.konto = konto;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Buchung buchung = (Buchung) o;
+        return id == buchung.id &&
+                valuta == buchung.valuta &&
+                bdate == buchung.bdate &&
+                isStorno == buchung.isStorno &&
+                isSepa == buchung.isSepa &&
+                Objects.equals(value, buchung.value) &&
+                Objects.equals(saldo, buchung.saldo) &&
+                Objects.equals(customerref, buchung.customerref) &&
+                Objects.equals(instref, buchung.instref) &&
+                Objects.equals(text, buchung.text) &&
+                Objects.equals(usage, buchung.usage) &&
+                Objects.equals(name, buchung.name) &&
+                Objects.equals(name2, buchung.name2) &&
+                Objects.equals(iban, buchung.iban) &&
+                Objects.equals(bic, buchung.bic) &&
+                Objects.equals(konto, buchung.konto);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, valuta, bdate, value, isStorno, saldo, customerref, instref, text, usage, name, name2, iban, bic, isSepa, konto);
     }
 }

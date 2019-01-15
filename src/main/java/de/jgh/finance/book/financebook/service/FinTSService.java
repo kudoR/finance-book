@@ -21,7 +21,7 @@ import java.util.*;
 @Service
 public class FinTSService {
 
-    public HashMap<Konto, List<UmsLine>> fetchAccount(String blz, String user, String pin) {
+    public HashMap<Konto, List<UmsLine>> fetchAccount(String blz, String user, String pin, AccountFetchType fetchType) {
         HashMap<Konto, List<UmsLine>> result = new HashMap<>();
 
         // HBCI4Java initialisieren
@@ -78,7 +78,7 @@ public class FinTSService {
 
             for (Konto k : konten) {
                 try {
-                    List<UmsLine> umsaetze = fetchAccountInternal(handle, k);
+                    List<UmsLine> umsaetze = fetchAccountInternal(handle, k, fetchType);
                     result.put(k, umsaetze);
 
                 } catch (Exception e) {
@@ -104,9 +104,9 @@ public class FinTSService {
         }
     }
 
-    private List<UmsLine> fetchAccountInternal(HBCIHandler handle, Konto k) {
+    private List<UmsLine> fetchAccountInternal(HBCIHandler handle, Konto k, AccountFetchType fetchType) {
 
-        HBCIJob umsatzJob = handle.newJob("KUmsAll");
+        HBCIJob umsatzJob = handle.newJob(fetchType.value());
         umsatzJob.setParam("my", k); // festlegen, welches Konto abgefragt werden soll.
         umsatzJob.addToQueue(); // Zur Liste der auszufuehrenden Auftraege hinzufuegen
 
