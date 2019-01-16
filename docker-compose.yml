@@ -2,3 +2,5 @@ version: '2'
 services:
   app:
     build: .
+    ports:
+      - 8090:8090
