@@ -1,4 +1,4 @@
-FROM java:8
-EXPOSE 8080
-ADD /target/app.jar app.jar
-ENTRYPOINT ["java","-jar","app.jar"]
+FROM maven
+WORKDIR home/
+RUN sh -c 'git clone https://github.com/kudoR/finance-book.git && cd finance-book && mvn clean install'
+ENTRYPOINT [ "sh", "-c", "java -Djava.security.egd=file:/dev/./urandom -jar /home/finance-book/target/app.jar" ]
