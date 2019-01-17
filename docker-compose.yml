@@ -5,4 +5,4 @@ services:
     ports:
       - 8090:8090
     environment:
-    - "SPRING_PROFILES_ACTIVE=production"
+    - "SPRING_PROFILES_ACTIVE=prod"
