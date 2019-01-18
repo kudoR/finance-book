@@ -22,7 +22,7 @@ public class Buchung implements Serializable {
     private String instref;
     private String text;
     @ElementCollection
-    private List<String> usage;
+    private List<String> usageList;
     private String name;
     private String name2;
     private String iban;
@@ -96,12 +96,12 @@ public class Buchung implements Serializable {
         this.text = text;
     }
 
-    public List<String> getUsage() {
-        return usage;
+    public List<String> getUsageList() {
+        return usageList;
     }
 
-    public void setUsage(List<String> usage) {
-        this.usage = usage;
+    public void setUsageList(List<String> usageList) {
+        this.usageList = usageList;
     }
 
     public String getName() {
@@ -167,7 +167,7 @@ public class Buchung implements Serializable {
                 Objects.equals(customerref, buchung.customerref) &&
                 Objects.equals(instref, buchung.instref) &&
                 Objects.equals(text, buchung.text) &&
-                Objects.equals(usage, buchung.usage) &&
+                Objects.equals(usageList, buchung.usageList) &&
                 Objects.equals(name, buchung.name) &&
                 Objects.equals(name2, buchung.name2) &&
                 Objects.equals(iban, buchung.iban) &&
@@ -178,6 +178,6 @@ public class Buchung implements Serializable {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, valuta, bdate, value, isStorno, saldo, customerref, instref, text, usage, name, name2, iban, bic, isSepa, konto);
+        return Objects.hash(id, valuta, bdate, value, isStorno, saldo, customerref, instref, text, usageList, name, name2, iban, bic, isSepa, konto);
     }
 }

@@ -42,7 +42,7 @@ public abstract class BuchungMapper {
 
         buchung.setText(umsLine.text);
 
-        buchung.setUsage(new ArrayList<>(umsLine.usage));
+        buchung.setUsageList(new ArrayList<>(umsLine.usage));
 
         if (umsLine.other != null && umsLine.other.name != null) {
             buchung.setName(umsLine.other.name);
